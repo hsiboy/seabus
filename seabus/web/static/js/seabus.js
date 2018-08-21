@@ -7,6 +7,7 @@ var seabus = {
     initMap: function() {
         // called back by google maps api after map is initialized
         this.map = new google.maps.Map(document.getElementById('map'), {
+            // centered on Liverpool, UK.
             center: {lat:53.409318, lng: -3.002714},
             zoom: 10
         });
@@ -44,11 +45,7 @@ var seabus = {
                 if (this.point_has_moved(current_pos.lat(), current_pos.lng(), lat, lon)) {
                     console.log(name);
                     this.markers[id].setPosition(new google.maps.LatLng(lat, lon));
-                } else {
-                    if (name.includes('BURRARD')) {
-                        console.log(name + ' has not moved.');
-                    }
-                }
+                } 
             } else {
                 // create a new marker
                 var boatLatLon = new google.maps.LatLng(lat, lon);
@@ -64,7 +61,7 @@ var seabus = {
     },
 
     setIcon: function(name) {
-            return '/img/seabus.png';
+            return '/img/vessel.png';
     },
 
     getBoatsSocketIO: function() {
@@ -78,37 +75,6 @@ var seabus = {
             console.log(data);
         });
     },
-
-    createAboutBox: function() {
-        var about = document.createElement('div');
-        about.style.position = 'absolue';
-        about.style.top = '54px';
-        about.style.left = '11px';
-
-        var aboutUI = document.createElement('div');
-        aboutLink = document.createElement('a');
-
-        aboutUI.style.backgroundColor = '#fff';
-        aboutUI.style.textAlign = 'center';
-        aboutUI.style.border = '2px solid #fff';
-        aboutUI.style.borderRadius = '3px';
-        aboutUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
-        aboutUI.style.marginBottom = '22px';
-
-        aboutLink.style.fontSize = '11px';
-        aboutLink.style.fontFamily = 'Robot, Arial, sans-serif';
-        aboutLink.style.color = '#000';
-        aboutLink.style.textDecoration = 'none';
-        aboutLink.style.lineHeight = '38px';
-        aboutLink.style.paddingLeft = '5px';
-        aboutLink.style.paddingRight = '5px';
-        aboutLink.href = '/about.html';
-        aboutLink.innerHTML = 'About This App';
-        
-        about.appendChild(aboutUI);
-        aboutUI.appendChild(aboutLink);
-    
-        return about;
-    },
+   
 }
 
