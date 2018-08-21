@@ -7,8 +7,8 @@ var seabus = {
     initMap: function() {
         // called back by google maps api after map is initialized
         this.map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 49.2985, lng: -123.0957},
-            zoom: 14
+            center: {lat:53.409318, lng: -3.002714},
+            zoom: 10
         });
         this.map.controls[google.maps.ControlPosition.LEFT_TOP].push(this.createAboutBox());
         this.getBoatsSocketIO();
@@ -64,12 +64,7 @@ var seabus = {
     },
 
     setIcon: function(name) {
-        // return wifi enabled icon for boats which have wifi installed
-        if (name.includes('OTTER II') || name.includes('PACIFIC BRZE')) {
-            return '/img/seabus-wifi.png';
-        } else {
             return '/img/seabus.png';
-        }
     },
 
     getBoatsSocketIO: function() {
@@ -86,6 +81,10 @@ var seabus = {
 
     createAboutBox: function() {
         var about = document.createElement('div');
+        about.style.position = 'absolue';
+        about.style.top = '54px';
+        about.style.left = '11px';
+
         var aboutUI = document.createElement('div');
         aboutLink = document.createElement('a');
 

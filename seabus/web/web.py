@@ -1,6 +1,4 @@
 from flask import Flask
-import oboe
-from oboeware import OboeMiddleware
 from seabus.web.blueprint import blueprint
 from seabus.common.database import db
 from seabus.web.socketio import socketio
@@ -16,5 +14,4 @@ def create_app(config=None):
     socketio.init_app(app)
     app.register_blueprint(blueprint)
     db.init_app(app)
-    app.wsgi_app = OboeMiddleware(app.wsgi_app)
     return app

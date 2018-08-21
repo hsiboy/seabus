@@ -98,13 +98,13 @@ def listen(config):
 
             # if this beacon has telemetry, mark it as belonging to source boat
             #TODO: call this method after checking if boat is none
-            if telemetry is not None:
+            if boat is not None: 
+             if telemetry is not None:
                 telemetry.set_boat(boat)
 
             # if we know BOTH the vessel and the telemetry, it's worth recording new information
             if None not in (boat, telemetry):
-                if boat.is_seabus:
-                    log.info('Seabus: {}, {}'.format(boat.name, telemetry))
+                    log.info('Vessel: {}, {}'.format(boat.name, telemetry))
 
                     # cache this telemetry for immediate use in the web app
                     telemetry.put_cache()
@@ -118,8 +118,6 @@ def listen(config):
                         log.error('Bad response code: {}, msg: {}'.format(resp.status_code, resp.text))
                     else:
                         log.debug('Web app /update endpoint hit.')
-                else:
-                    log.info('Other Vessel: {}, {}'.format(boat.name, telemetry))
 
-                # now write to db
-                telemetry.smart_save()
+                    # now write to db
+                    telemetry.smart_save()

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python -m seabus.model.model
+python -m seabus.common.model.model

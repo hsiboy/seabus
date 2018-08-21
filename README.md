@@ -39,15 +39,6 @@ To send a few recorded seabus AIS update beacons to the running listener:
 (.venv) vagrant@vagrant-ubuntu-trusty-64:~/seabus/seabus/nmea_listen$ ./sendbeacons.sh seabus_beacons.txt 
 ```
 
-
-```
-apt-get update &&
-apt-get -y upgrade &&
-apt-get install -y python-pip python-dev python-numpy python-pandas &&
-pip install pip --upgrade &&
-pip install -r /home/ubuntu/seabus/requirements.txt
- ```
-
 #API
 
 There is an experimental API read endpoint available at [http://api.seab.us/data/v1](http://api.seab.us/data/v1). At the moment it requires no access key and provides the same data delivered to the web front end. Both of these things may change, watch this space!
