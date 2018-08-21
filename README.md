@@ -1,13 +1,13 @@
-#Seab.us
-=======
+# Seab.us
 
-# base requirements setup
+
+## base requirements setup
 ```
     sudo apt-get update
     sudo apt-get install -y git nginx python-pip python-dev python-pandas memcached sqlite3
     sudo pip install virtualenv
 ```
-# repo setup
+## repo setup
 ```
     ssh-keyscan -H github.com >> ~/.ssh/known_hosts
     git clone git@github.com:hsiboy/seabus.git
@@ -16,7 +16,14 @@
     source seabus/.venv-seabus/bin/activate
     pip install -r /home/vagrant/seabus/seabus/requirements.txt
 ```
-# nginx setup
+note, there is a dependancy on meld3 which wont work with Python3, so you may want to 
+
+```
+ virtualenv -p `which python2.7` seabus/.venv-seabus
+```
+instead.
+
+## nginx setup
 ```
     rm /etc/nginx/sites-enabled/default
     cp config/nginx-seabus-dev /etc/nginx/sites-enabled/seabus
@@ -27,7 +34,7 @@
 
 
 
-#Listener
+## Listener
 The [listener](seabus/nmea_listen/listener.py) program receives and processses marine telemetry data relayed from a raspberry pi with an [RTL-SDR](http://www.rtl-sdr.com/about-rtl-sdr/) tuner running [aisdecoder](https://github.com/sailoog/aisdecoder) to decode [AIS beacons](https://en.wikipedia.org/wiki/Automatic_identification_system).
 
 #Web

@@ -11,7 +11,6 @@ var seabus = {
             center: {lat:53.409318, lng: -3.002714},
             zoom: 10
         });
-        this.map.controls[google.maps.ControlPosition.LEFT_TOP].push(this.createAboutBox());
         this.getBoatsSocketIO();
     },
 

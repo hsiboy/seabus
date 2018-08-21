@@ -68,6 +68,7 @@ class ModelBase(db.Model):
     def put_cache(self):
         """ write this model to memcached """
         mc_client.set(self._mc_key(), pickle.dumps(self))
+        log.info('put_cache')
 
     @classmethod
     def get_cache(cls, id):
@@ -117,6 +118,8 @@ class Boat(ModelBase):
 
         if len(boats) > 0:
             return boats
+
+
 
     @classmethod
     def from_beacon(cls, beacon):
@@ -262,18 +265,13 @@ class Telemetry(ModelBase):
 
     def smart_save(self):
         """
-        Save all telemetry for Seabuses, only latest telemetry for everyone else
+        Save all telemetry
         """
         if Boat.by_id(self.boat_id).is_seabus:
             # record every piece of telemetry for each seabus
             if self.is_valid():
                 self.save()
-        else:
-            # drop all previous telemetry for this boat
-            if self.is_valid():
-                db.session.query(Telemetry).filter_by(boat_id=self.boat_id).delete()
-                self.save()
-
+       
     def _mc_key(self):
         """ key based on class name + boat id should keep memcache pretty clear of junk """
         assert self.boat_id is not None
